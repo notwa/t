@@ -5,7 +5,6 @@ require 'thor'
 require 'twitter'
 require 't/collectable'
 require 't/delete'
-require 't/editor'
 require 't/list'
 require 't/printable'
 require 't/rcfile'
@@ -793,7 +792,7 @@ module T
     method_option 'location', :aliases => '-l', :type => :string, :default => nil, :desc => "Add location information. If the optional 'latitude,longitude' parameter is not supplied, looks up location by IP address."
     method_option 'file', :aliases => '-f', :type => :string, :desc => 'The path to an image to attach to your tweet.'
     def update(message = nil)
-      message = T::Editor.gets if message.nil? || message.empty?
+      message = STDIN.read if message.nil? || message.empty?
       opts = {:trim_user => true}
       add_location!(options, opts)
       status = if options['file']
