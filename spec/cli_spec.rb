@@ -50,10 +50,6 @@ testcli
       stub_get('/1.1/account/verify_credentials.json').with(:query => {:include_entities => 'false', :skip_status => 'true'}).to_return(:body => fixture('sferik.json'), :headers => {:content_type => 'application/json; charset=utf-8'})
     end
     it 'requests the correct resource' do
-      expect(Readline).to receive(:readline).with('Press [Enter] to open the Twitter Developer site. ', true).and_return("\n")
-      expect(Readline).to receive(:readline).with('Enter your API key: ', true).and_return('abc123')
-      expect(Readline).to receive(:readline).with('Enter your API secret: ', true).and_return('asdfasd223sd2')
-      expect(Readline).to receive(:readline).with('Press [Enter] to open the Twitter app authorization page. ', true).and_return("\n")
       expect(Readline).to receive(:readline).with('Enter the supplied PIN: ', true).and_return('1234567890')
       @cli.authorize
       expect(a_post('/oauth/request_token')).to have_been_made
@@ -62,10 +58,6 @@ testcli
     end
     it 'does not raise error' do
       expect do
-        expect(Readline).to receive(:readline).with('Press [Enter] to open the Twitter Developer site. ', true).and_return("\n")
-        expect(Readline).to receive(:readline).with('Enter your API key: ', true).and_return('abc123')
-        expect(Readline).to receive(:readline).with('Enter your API secret: ', true).and_return('asdfasd223sd2')
-        expect(Readline).to receive(:readline).with('Press [Enter] to open the Twitter app authorization page. ', true).and_return("\n")
         expect(Readline).to receive(:readline).with('Enter the supplied PIN: ', true).and_return('1234567890')
         @cli.authorize
       end.not_to raise_error
@@ -78,10 +70,6 @@ testcli
         File.delete(project_path + '/tmp/empty')
       end
       it 'requests the correct resource' do
-        expect(Readline).to receive(:readline).with('Press [Enter] to open the Twitter Developer site. ', true).and_return("\n")
-        expect(Readline).to receive(:readline).with('Enter your API key: ', true).and_return('abc123')
-        expect(Readline).to receive(:readline).with('Enter your API secret: ', true).and_return('asdfasd223sd2')
-        expect(Readline).to receive(:readline).with('Press [Enter] to open the Twitter app authorization page. ', true).and_return("\n")
         expect(Readline).to receive(:readline).with('Enter the supplied PIN: ', true).and_return('1234567890')
         @cli.authorize
         expect(a_post('/oauth/request_token')).to have_been_made
@@ -90,10 +78,6 @@ testcli
       end
       it 'does not raise error' do
         expect do
-          expect(Readline).to receive(:readline).with('Press [Enter] to open the Twitter Developer site. ', true).and_return("\n")
-          expect(Readline).to receive(:readline).with('Enter your API key: ', true).and_return('abc123')
-          expect(Readline).to receive(:readline).with('Enter your API secret: ', true).and_return('asdfasd223sd2')
-          expect(Readline).to receive(:readline).with('Press [Enter] to open the Twitter app authorization page. ', true).and_return("\n")
           expect(Readline).to receive(:readline).with('Enter the supplied PIN: ', true).and_return('1234567890')
           @cli.authorize
         end.not_to raise_error

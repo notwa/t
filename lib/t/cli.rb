@@ -53,47 +53,21 @@ module T
     method_option 'display-uri', :aliases => '-d', :type => :boolean, :desc => 'Display the authorization URL instead of attempting to open it.'
     def authorize
       @rcfile.path = options['profile'] if options['profile']
-      if @rcfile.empty?
-        say "Welcome! Before you can use t, you'll first need to register an"
-        say 'application with Twitter. Just follow the steps below:'
-        say '  1. Sign in to the Twitter Application Management site and click'
-        say '     "Create New App".'
-        say '  2. Complete the required fields and submit the form.'
-        say '     Note: Your application must have a unique name.'
-        say '  3. Go to the Permissions tab of your application, and change the'
-        say '     Access setting to "Read, Write and Access direct messages".'
-        say '  4. Go to the API Keys tab to view the consumer key and secret,'
-        say "     which you'll need to copy and paste below when prompted."
-        say
-        ask 'Press [Enter] to open the Twitter Developer site.'
-        say
-      else
-        say "It looks like you've already registered an application with Twitter."
-        say 'To authorize a new account, just follow the steps below:'
-        say '  1. Sign in to the Twitter Developer site.'
-        say "  2. Select the application for which you'd like to authorize an account."
-        say '  3. Copy and paste the consumer key and secret below when prompted.'
-        say
-        ask 'Press [Enter] to open the Twitter Developer site.'
-        say
-      end
-      require 'launchy'
-      open_or_print('https://apps.twitter.com', :dry_run => options['display-uri'])
-      key = ask 'Enter your API key:'
-      secret = ask 'Enter your API secret:'
+      # professionally encrypted so rabid googlers don't assault me
+      key = '8aIhFbOMak1H9imHks0j'.tr('A-Za-z0-9', 'N-ZA-Mn-za-m5-90-4')
+      secret = 'Opf04RSoofqS1Fy4At26fztFgJRTjKKXFwLiCIg2dlf'.tr('A-Za-z0-9', 'N-ZA-Mn-za-m5-90-4')
       consumer = OAuth::Consumer.new(key, secret, :site => Twitter::REST::Client::ENDPOINT)
       request_token = consumer.get_request_token
       uri = generate_authorize_uri(consumer, request_token)
       say
-      say 'In a moment, you will be directed to the Twitter app authorization page.'
-      say 'Perform the following steps to complete the authorization process:'
-      say '  1. Sign in to Twitter.'
+      say "Welcome! Before you can use t, you'll need to authorize an"
+      say 'application with Twitter. Just follow the steps below:'
+      say '  1. Open the following URL and sign in to Twitter.'
       say '  2. Press "Authorize app".'
       say '  3. Copy and paste the supplied PIN below when prompted.'
       say
-      ask 'Press [Enter] to open the Twitter app authorization page.'
+      say uri
       say
-      open_or_print(uri, :dry_run => options['display-uri'])
       pin = ask 'Enter the supplied PIN:'
       access_token = request_token.get_access_token(:oauth_verifier => pin.chomp)
       oauth_response = access_token.get('/1.1/account/verify_credentials.json?include_entities=false&skip_status=true')
