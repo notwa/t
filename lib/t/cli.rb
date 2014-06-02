@@ -541,7 +541,6 @@ module T
     method_option 'id', :aliases => '-i', :type => :boolean, :desc => 'Specify user via ID instead of screen name.'
     method_option 'status', :aliases => '-s', :type => :boolean, :desc => 'Specify input as a Twitter status ID instead of a screen name.'
     def open(user)
-      require 'launchy'
       if options['id']
         user = client.user(user.to_i)
         open_or_print(user.uri, :dry_run => options['display-uri'])
