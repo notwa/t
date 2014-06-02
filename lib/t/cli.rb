@@ -471,15 +471,6 @@ module T
       print_lists(lists)
     end
 
-    desc 'matrix', 'Unfortunately, no one can be told what the Matrix is. You have to see it for yourself.'
-    def matrix
-      opts = {:count => MAX_SEARCH_RESULTS, :include_entities => false}
-      tweets = client.search('lang:ja', opts)
-      tweets.each do |tweet|
-        say(tweet.text.gsub(/[^\u3000\u3040-\u309f]/, '').reverse, [:bold, :green, :on_black], false)
-      end
-    end
-
     desc 'mentions', "Returns the #{DEFAULT_NUM_RESULTS} most recent Tweets mentioning you."
     method_option 'csv', :aliases => '-c', :type => :boolean, :desc => 'Output in CSV format.'
     method_option 'decode_uris', :aliases => '-d', :type => :boolean, :desc => 'Decodes t.co URLs into their original form.'

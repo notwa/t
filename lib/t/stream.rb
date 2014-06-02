@@ -96,19 +96,6 @@ module T
     end
     map %w[tl] => :timeline
 
-    desc 'matrix', 'Unfortunately, no one can be told what the Matrix is. You have to see it for yourself.'
-    def matrix
-      require 't/cli'
-      streaming_client.before_request do
-        cli = T::CLI.new
-        cli.matrix
-      end
-      streaming_client.sample(:language => 'ja') do |tweet|
-        next unless tweet.is_a?(Twitter::Tweet)
-        say(tweet.text.gsub(/[^\u3000\u3040-\u309f]/, '').reverse, [:bold, :green, :on_black], false)
-      end
-    end
-
     desc 'search KEYWORD [KEYWORD...]', 'Stream Tweets that contain specified keywords, joined with logical ORs (Control-C to stop)'
     method_option 'csv', :aliases => '-c', :type => :boolean, :desc => 'Output in CSV format.'
     method_option 'decode_uris', :aliases => '-d', :type => :boolean, :desc => 'Decodes t.co URLs into their original form.'

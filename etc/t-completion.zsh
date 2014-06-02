@@ -38,7 +38,6 @@ _t (){
       "intersection[Displays the intersection of users followed by the specified users.]" \
       "leaders[Returns the list of people who you follow but don\'t follow you back.]" \
       "lists[Returns the lists created by a user.]" \
-      "matrix[Unfortunately, no one can be told what the Matrix is. You have to see it for yourself.]" \
       "mentions[Returns the 20 most recent Tweets mentioning you.]" \
       "mute[Mute users.]" \
       "open[Opens that user\'s profile in a web browser.]" \
@@ -243,11 +242,6 @@ _t_lists() {
     "(-r --reverse)"{-r,--reverse}"[Reverse the order of the sort.]" \
     "(-s --sort)"{-s,--sort}"[Specify the order of the results.]" \
     "(-u --unsorted)"{-u,--unsorted}"[Output is not sorted.]" \
-    $t_general_options && ret=0
-}
-
-_t_matrix() {
-  _arguments \
     $t_general_options && ret=0
 }
 
@@ -467,7 +461,6 @@ __t_set_arguments() {
 __t_stream_arguments() {
   _args=(all
     list
-    matrix
     search
     timeline
     users

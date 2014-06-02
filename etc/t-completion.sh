@@ -10,7 +10,7 @@
         topcmd=${COMP_WORDS[1]}
         prev=${COMP_WORDS[COMP_CWORD-1]}
 
-        COMMANDS='accounts authorize block direct_messages direct_messages_sent dm does_contain does_follow favorite favorites follow followings followings_following followers friends groupies intersection leaders lists matrix mentions mute open reach reply report_spam retweet retweets retweets_of_me status timeline trends trend_locations unfollow update users version whois whoami delete list search set stream'
+        COMMANDS='accounts authorize block direct_messages direct_messages_sent dm does_contain does_follow favorite favorites follow followings followings_following followers friends groupies intersection leaders lists mentions mute open reach reply report_spam retweet retweets retweets_of_me status timeline trends trend_locations unfollow update users version whois whoami delete list search set stream'
 
         case "$topcmd" in
           accounts)
@@ -173,14 +173,6 @@ lists)
               -C|--color) completions='auto never' ;;
 
               *) completions='--csv -c --id -i --long -l --relative_dates -a --reverse -r --sort -s --unsorted -u -H --host -C --color -P --profile' ;;
-              esac;;
-
-matrix)
-              case "$prev" in
-              
-              -C|--color) completions='auto never' ;;
-
-              *) completions='-H --host -C --color -P --profile' ;;
               esac;;
 
 mentions)
@@ -407,10 +399,9 @@ help) completions='-H --host -C --color -P --profile' ;;
 
 stream)
               case "$prev" in
-              stream) completions='all list matrix search timeline users help';;
+              stream) completions='all list search timeline users help';;
               all) completions='-H --host -C --color -P --profile' ;;
 list) completions='-H --host -C --color -P --profile' ;;
-matrix) completions='-H --host -C --color -P --profile' ;;
 search) completions='-H --host -C --color -P --profile' ;;
 timeline) completions='-H --host -C --color -P --profile' ;;
 users) completions='-H --host -C --color -P --profile' ;;
