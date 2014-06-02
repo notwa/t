@@ -10,7 +10,7 @@
         topcmd=${COMP_WORDS[1]}
         prev=${COMP_WORDS[COMP_CWORD-1]}
 
-        COMMANDS='accounts authorize block direct_messages direct_messages_sent dm does_contain does_follow favorite favorites follow followings followings_following followers friends groupies intersection leaders lists matrix mentions mute open reach reply report_spam retweet retweets retweets_of_me ruler status timeline trends trend_locations unfollow update users version whois whoami delete list search set stream'
+        COMMANDS='accounts authorize block direct_messages direct_messages_sent dm does_contain does_follow favorite favorites follow followings followings_following followers friends groupies intersection leaders lists matrix mentions mute open reach reply report_spam retweet retweets retweets_of_me status timeline trends trend_locations unfollow update users version whois whoami delete list search set stream'
 
         case "$topcmd" in
           accounts)
@@ -253,14 +253,6 @@ retweets_of_me)
               -C|--color) completions='auto never' ;;
 
               *) completions='--csv -c --decode_uris -d --long -l --number -n --relative_dates -a --reverse -r -H --host -C --color -P --profile' ;;
-              esac;;
-
-ruler)
-              case "$prev" in
-              
-              -C|--color) completions='auto never' ;;
-
-              *) completions='--indent -i -H --host -C --color -P --profile' ;;
               esac;;
 
 status)

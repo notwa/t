@@ -638,13 +638,6 @@ module T
     end
     map %w[retweetsofme] => :retweets_of_me
 
-    desc 'ruler', 'Prints a 140-character ruler'
-    method_option 'indent', :aliases => '-i', :type => :numeric, :default => 0, :desc => 'The number of spaces to print before the ruler.'
-    def ruler
-      markings = '----|'.chars.cycle.take(140).join
-      say "#{' ' * options['indent'].to_i}#{markings}"
-    end
-
     desc 'status TWEET_ID', 'Retrieves detailed information about a Tweet.'
     method_option 'csv', :aliases => '-c', :type => :boolean, :desc => 'Output in CSV format.'
     method_option 'decode_uris', :aliases => '-d', :type => :boolean, :desc => 'Decodes t.co URLs into their original form.'

@@ -48,7 +48,6 @@ _t (){
       "retweet[Sends Tweets to your followers.]" \
       "retweets[Returns the 20 most recent Retweets by a user.]" \
       "retweets_of_me[Returns the 20 most recent Tweets of the authenticated user that have been retweeted by others.]" \
-      "ruler[Prints a 140-character ruler]" \
       "status[Retrieves detailed information about a Tweet.]" \
       "timeline[Returns the 20 most recent Tweets posted by a user.]" \
       "trends[Returns the top 10 trending topics.]" \
@@ -320,12 +319,6 @@ _t_retweets_of_me() {
     "(-n --number)"{-n,--number}"[Limit the number of results.]" \
     "(-a --relative_dates)"{-a,--relative_dates}"[Show relative dates.]" \
     "(-r --reverse)"{-r,--reverse}"[Reverse the order of the sort.]" \
-    $t_general_options && ret=0
-}
-
-_t_ruler() {
-  _arguments \
-    "(-i --indent)"{-i,--indent}"[The number of space to print before the ruler.]" \
     $t_general_options && ret=0
 }
 

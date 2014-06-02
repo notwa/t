@@ -3041,24 +3041,6 @@ ID                   Posted at     Screen name       Text
     end
   end
 
-  describe '#ruler' do
-    it 'has the correct output' do
-      @cli.ruler
-      expect($stdout.string.chomp.size).to eq 140
-      expect($stdout.string.chomp).to eq '----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|'
-    end
-    context 'with indentation' do
-      before do
-        @cli.options = @cli.options.merge('indent' => 2)
-      end
-      it 'has the correct output' do
-        @cli.ruler
-        expect($stdout.string.chomp.size).to eq 142
-        expect($stdout.string.chomp).to eq '  ----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|'
-      end
-    end
-  end
-
   describe '#status' do
     before do
       stub_get('/1.1/statuses/show/55709764298092545.json').with(:query => {:include_my_retweet => 'false', :include_entities => 'false'}).to_return(:body => fixture('status.json'), :headers => {:content_type => 'application/json; charset=utf-8'})
